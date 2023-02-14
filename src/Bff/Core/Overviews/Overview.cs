@@ -10,6 +10,8 @@ public sealed class Overview
 
     public class CountryOverview
     {
+        public string ExchangeName { get; set; }
+
         public string CountryName { get; set; }
 
         public string CountryFlagURL { get; set; }

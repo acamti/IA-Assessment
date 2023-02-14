@@ -15,10 +15,20 @@ builder.Services
     .AddTransient<IGetContinentService, ContinentService>()
     .AddMediatR(typeof(GetOverviewRequest).Assembly);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(builder =>
+    {
+        builder.AllowAnyOrigin();
+    });
+});
+
 var app = builder.Build();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();

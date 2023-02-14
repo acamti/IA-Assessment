@@ -39,6 +39,7 @@ public sealed class GetOverviewHandler : IRequestHandler<GetOverviewRequest, IEn
                     Countries = exchangeGroup.Select(exchange => new Overview.CountryOverview
                     {
                         CountryName = exchange.Country,
+                        ExchangeName = exchange.Name,
                         HasIncentive = exchange.HasTradingIncentive,
                         TradeVolume = exchange.TradeVolume,
                         YearEstablished = exchange.YearEstablished,

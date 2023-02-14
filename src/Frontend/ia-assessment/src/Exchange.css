@@ -1,0 +1,25 @@
+.spinner {
+    border: 3px solid rgba(0, 0, 0, 0.1);
+    border-top-color: #3498db;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    animation: spin 1s ease-in-out infinite;
+    margin: 0 auto;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.exchange {
+    margin: 10px;
+}
+
+.exchange-header {
+    display: flex;
+    gap: 5px;
+    flex-direction: row;
+}

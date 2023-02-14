@@ -4,8 +4,6 @@ public class Exchange
 {
     public string Id { get; set; }
 
-    public string Continent { get; set; }
-
     public string Name { get; set; }
 
     public int? YearEstablished { get; set; }
