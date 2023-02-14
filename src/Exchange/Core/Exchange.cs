@@ -24,4 +24,7 @@ public class Exchange
 
     [JsonProperty("trust_score")]
     public int? TrustScore { get; set; }
+    
+    [JsonProperty("trade_volume_24h_btc")]
+    public decimal TradeVolume { get; set; }
 }

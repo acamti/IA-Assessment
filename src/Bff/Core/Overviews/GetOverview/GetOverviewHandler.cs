@@ -12,6 +12,7 @@ public sealed class GetOverviewHandler : IRequestHandler<GetOverviewRequest, IEn
 {
     private readonly IGetContinentService _continentService;
     private readonly IGetExchangeService _exchangeService;
+    private Dictionary<string, string> _countries;
 
     public GetOverviewHandler(
         IGetExchangeService exchangeService,
@@ -23,8 +24,41 @@ public sealed class GetOverviewHandler : IRequestHandler<GetOverviewRequest, IEn
 
     public async Task<IEnumerable<Overview>> Handle(GetOverviewRequest request, CancellationToken cancellationToken)
     {
-        await Task.Yield();
+        _countries = new Dictionary<string, string>();
 
-        return Enumerable.Empty<Overview>();
+        var allExchanges = await _exchangeService.GetAllExchanges();
+
+        return allExchanges
+            .Where(exchange => exchange.Country is not null or "")
+            .GroupBy(exchange => FindContinentForCountry(exchange.Country).Result)
+            .Select(exchangeGroup =>
+            {
+                return new Overview
+                {
+                    ContinentName = exchangeGroup.Key,
+                    Countries = exchangeGroup.Select(exchange => new Overview.CountryOverview
+                    {
+                        CountryName = exchange.Country,
+                        HasIncentive = exchange.HasTradingIncentive,
+                        TradeVolume = exchange.TradeVolume,
+                        YearEstablished = exchange.YearEstablished,
+                        CountryFlagURL = "https://flagcdn.com/48x36/_.png"
+                    })
+                };
+            });
+    }
+
+    private async Task<string> FindContinentForCountry(string countryName)
+    {
+        if (countryName is null)
+            return string.Empty;
+
+        if (_countries.TryGetValue(countryName, out var value))
+            return value;
+
+        var continent = await _continentService.GetContinentByCountryName(countryName);
+        _countries.Add(countryName, continent);
+
+        return continent;
     }
 }

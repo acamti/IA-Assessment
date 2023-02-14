@@ -1,8 +1,7 @@
 using IA.Assessment.BFF.Core.Continents;
 using IA.Assessment.BFF.Core.Exchanges;
 using IA.Assessment.BFF.Core.Overviews.GetOverview;
-using IA.Assessment.BFF.Infrastructure.Continents;
-using IA.Assessment.BFF.Infrastructure.Exchanges;
+using IA.Assessment.BFF.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
