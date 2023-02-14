@@ -1,5 +1,5 @@
 using IA.Assessment.Exchange.Core.GetExchanges;
-using IA.Assessment.Exchange.Infrastructure.Exchanges;
+using IA.Assessment.Exchange.Infrastructure;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;

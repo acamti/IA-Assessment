@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IA.Assessment.Exchange.Core.GetExchanges;
 
-public class GetExchangesHandler : IRequestHandler<GetExchangesRequest, List<Exchange>>
+public sealed class GetExchangesHandler : IRequestHandler<GetExchangesRequest, List<Exchange>>
 {
     private readonly IGetExchangesService _service;
 

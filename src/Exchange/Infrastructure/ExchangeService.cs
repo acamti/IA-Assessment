@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace IA.Assessment.Exchange.Infrastructure.Exchanges;
+namespace IA.Assessment.Exchange.Infrastructure;
 
 public sealed class GetExchangesService : IGetExchangesService
 {
